@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
+import { createUser } from "@/utils/db";
+import { saltAndHashPassword } from "@/utils/password";
 
 export default function Example() {
   const [data, setData] = useState({ email: "", password: "" });
 
   function handleSubmit() {
-    console.log(data);
+    createUser(email, saltAndHashPassword(password));
     setData({ email: "", password: "" });
   }
 
