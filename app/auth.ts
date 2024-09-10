@@ -5,6 +5,27 @@ import Credentials from "next-auth/providers/credentials";
 import { saltAndHashPassword } from "./utils/password";
 import { getUserFromDb } from "./utils/db";
 
+async function authorize(credentials) {
+  try {
+    let user = null;
+
+    const { email, password } = credentials as {
+      email: string;
+      password: string;
+    };
+
+    user = await getUserFromDb(email, password);
+
+    if (!user) {
+      throw new Error("User not found.");
+    }
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
   session: {
@@ -18,36 +39,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
-      credentials: {
-        email: {},
-        password: {},
-      },
-      authorize: async (credentials) => {
-        try {
-          let user = null;
-
-          const { email, password } = credentials as {
-            email: string;
-            password: string;
-          };
-
-          const pwHash = await saltAndHashPassword(password);
-
-          user = await getUserFromDb(email, pwHash);
-
-          if (!user) {
-            throw new Error("User not found.");
-          }
-
-          return user;
-        } catch (error) {
-          throw error;
-        }
-      },
+      credentials: {},
+      authorize: authorize,
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
+      console.log({ token, user });
       if (user) {
         return {
           ...token,
@@ -68,3 +66,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+
+export { authorize };

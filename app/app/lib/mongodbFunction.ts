@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import client from "./db";
 
 async function addUser(username: string, password: string) {

@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 async function saltAndHashPassword(password: string) {
   return bcrypt.hash(password, 10);

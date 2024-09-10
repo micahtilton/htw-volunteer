@@ -1,5 +1,4 @@
 "use client";
-import { signIn } from "@/auth";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -9,7 +8,24 @@ export default function Example() {
   const [err, setErr] = useState(false);
   const router = useRouter();
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    axios
+      .post("/api/create", data)
+      .then((res) => {
+        // Check if the response indicates success
+        if (res.status === 200) {
+          router.push("/");
+        } else {
+          setErr(true);
+        }
+      })
+      .catch((err) => {
+        setErr(true);
+      })
+      .finally(() => {
+        setData({ email: "", password: "" });
+      });
+  }
 
   return (
     <>
@@ -104,7 +120,7 @@ export default function Example() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Log in
+                Sign in
               </button>
             </div>
           </form>

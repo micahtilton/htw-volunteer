@@ -1,8 +1,23 @@
 import client from "@/app/lib/db";
+import bcrypt from "bcryptjs";
 
-async function getUserFromDb(email: string, pwHash: string) {
+async function getUserFromDb(email: string, password: string) {
   const collection = client.db().collection("users");
-  const user = await collection.findOne({ email, pwHash });
+
+  const cursor = collection.find({});
+
+  let user;
+  while (await cursor.hasNext()) {
+    user = await cursor.next();
+
+    // Compare the plain password to the stored hashed password
+    const isMatch =
+      (await bcrypt.compare(password, user.pwHash)) && user.email === email;
+    if (isMatch) {
+      break; // Return or handle matched password appropriately
+    }
+  }
+
   if (!user) return;
   user.id = user._id;
   delete user._id;
