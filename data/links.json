@@ -1,0 +1,12 @@
+{
+  "links": [
+    {
+      "name": "Home",
+      "dest": "/"
+    },
+    {
+      "name": "Test",
+      "dest": "/test"
+    }
+  ]
+}
