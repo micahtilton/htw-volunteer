@@ -1,7 +1,7 @@
 import React from "react";
 import localFont from "next/font/local";
 import Header from "@/components/header";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 import "./globals.css";
 
@@ -36,5 +36,5 @@ export default function RootLayout({ children = <></> }) {
 }
 
 RootLayout.propTypes = {
-  children: PropTypes.element
-}
+  children: PropTypes.element,
+};

@@ -19,7 +19,7 @@
 } */
 
 header {
-  background-color: var(--foreground)
+  background-color: var(--foreground);
 }
 
 .centered {

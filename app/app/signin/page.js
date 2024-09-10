@@ -1,8 +1,8 @@
-import React from "react"
+import React from "react";
 
 export default function Example() {
   return (
-      <>
+    <>
       {/*
         This example requires updating your template:
 
@@ -12,7 +12,7 @@ export default function Example() {
         ```
       */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -26,7 +26,10 @@ export default function Example() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form action="#" method="POST" className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -43,11 +46,17 @@ export default function Example() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
                     Forgot password?
                   </a>
                 </div>
@@ -75,13 +84,16 @@ export default function Example() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            Not a member?{" "}
+            <a
+              href="#"
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            >
               Start a 14 day free trial
             </a>
           </p>
         </div>
       </div>
     </>
-  )
+  );
 }
