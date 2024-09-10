@@ -9,13 +9,14 @@ async function getUserFromDb(email: string, pwHash: string) {
   return user;
 }
 
-async function createUser(email: string, pwHash: string) {
+async function createUser(email: string, pwHash: string): Promise<Boolean> {
   const collection = client.db().collection("users");
   const user = await collection.findOne({ email });
   if (user) {
     throw new Error("Email already in use.");
   }
   collection.insertOne({ _id: email as any, email, pwHash });
+  return true;
 }
 
 export { getUserFromDb, createUser };

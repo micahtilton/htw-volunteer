@@ -1,14 +1,30 @@
 "use client";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { createUser } from "@/utils/db";
-import { saltAndHashPassword } from "@/utils/password";
 
 export default function Example() {
   const [data, setData] = useState({ email: "", password: "" });
+  const [err, setErr] = useState(false);
+  const router = useRouter();
 
-  function handleSubmit() {
-    createUser(email, saltAndHashPassword(password));
-    setData({ email: "", password: "" });
+  async function handleSubmit() {
+    axios
+      .post("/api/create", data)
+      .then((res) => {
+        // Check if the response indicates success
+        if (res.status === 200) {
+          router.push("/");
+        } else {
+          setErr(true);
+        }
+      })
+      .catch((err) => {
+        setErr(true);
+      })
+      .finally(() => {
+        setData({ email: "", password: "" });
+      });
   }
 
   return (
