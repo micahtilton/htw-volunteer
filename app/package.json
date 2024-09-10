@@ -10,9 +10,12 @@
     "fix": "npx prettier . --write"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^3.4.2",
     "@headlessui/react": "^2.1.6",
     "@heroicons/react": "^2.1.5",
+    "mongodb": "^6.8.1",
     "next": "14.2.8",
+    "next-auth": "^5.0.0-beta.20",
     "prop-types": "^15.8.1",
     "react": "^18",
     "react-dom": "^18"
