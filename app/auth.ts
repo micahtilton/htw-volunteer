@@ -13,7 +13,7 @@ async function authorize(credentials) {
       email: string;
       password: string;
     };
-
+    
     user = await getUserFromDb(email, password);
 
     if (!user) {
@@ -67,4 +67,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
 });
 
-export { authorize };
+// export { authorize };
