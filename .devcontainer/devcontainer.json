@@ -15,7 +15,12 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"mongodb.mongodb-vscode"
+				"mongodb.mongodb-vscode",
+				"esbenp.prettier-vscode",
+				"ms-azuretools.vscode-docker",
+				"bradlc.vscode-tailwindcss",
+				"ecmel.vscode-html-css",
+				"pranaygp.vscode-css-peek"
 			]
 		}
 	}
