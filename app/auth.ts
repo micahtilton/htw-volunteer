@@ -3,7 +3,8 @@ import Credentials from "next-auth/providers/credentials";
 
 // Your own logic for dealing with plaintext password strings; be careful!
 import { saltAndHashPassword } from "./utils/password";
-import { getUserFromDb } from "./utils/db";
+import axios from "axios";
+// import { getUserFromDb } from "./utils/db";
 
 async function authorize(credentials) {
   try {
@@ -14,7 +15,9 @@ async function authorize(credentials) {
       password: string;
     };
     
-    user = await getUserFromDb(email, password);
+    user = await axios.post("http://localhost:3000/api/read", {email, password})
+    const data = await user.data
+    user = data
 
     if (!user) {
       throw new Error("User not found.");
@@ -39,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
-      credentials: {},
+      credentials: {email:{},password:{}},
       authorize: authorize,
     }),
   ],
@@ -67,4 +70,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
 });
 
-// export { authorize };
+export { authorize };

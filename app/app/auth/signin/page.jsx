@@ -1,5 +1,5 @@
 "use client";
-// import { signIn } from "@/auth";
+import { signIn } from "@/auth";
 import axios from "axios"; 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -9,7 +9,7 @@ export default function Example() {
   const [err, setErr] = useState(false);
   const router = useRouter();
 
-  async function handleSubmit() {
+  function handleSubmit() {
     signIn("credentials")
   }
 
